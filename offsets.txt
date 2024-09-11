@@ -34,3 +34,12 @@ red offset relative to blue: 140, -27
 lady.tif:
 green offset relative to blue: 56, 8
 red offset relative to blue: 116, 11
+mosque.jpg:
+green offset relative to blue: 3, 0
+red offset relative to blue: 8, 1
+river.jpg:
+green offset relative to blue: 2, 0
+red offset relative to blue: 10, -1
+fortress.jpg:
+green offset relative to blue: 3, 0
+red offset relative to blue: 10, 0
