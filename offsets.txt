@@ -1,0 +1,36 @@
+emir.tif:
+green offset relative to blue: 49, 24
+red offset relative to blue: 103, 57
+monastery.jpg:
+green offset relative to blue: -3, 2
+red offset relative to blue: 3, 2
+church.tif:
+green offset relative to blue: 25, 4
+red offset relative to blue: 58, -4
+three_generations.tif:
+green offset relative to blue: 53, 14
+red offset relative to blue: 112, 11
+melons.tif:
+green offset relative to blue: 82, 11
+red offset relative to blue: 178, 13
+onion_church.tif:
+green offset relative to blue: 51, 26
+red offset relative to blue: 108, 36
+train.tif:
+green offset relative to blue: 42, 6
+red offset relative to blue: 87, 32
+icon.tif:
+green offset relative to blue: 41, 17
+red offset relative to blue: 89, 23
+self_portrait.tif:
+green offset relative to blue: 79, 29
+red offset relative to blue: 176, 36
+harvesters.tif:
+green offset relative to blue: 60, 16
+red offset relative to blue: 124, 13
+sculpture.tif:
+green offset relative to blue: 33, -11
+red offset relative to blue: 140, -27
+lady.tif:
+green offset relative to blue: 56, 8
+red offset relative to blue: 116, 11
