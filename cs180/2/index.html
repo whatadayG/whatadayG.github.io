@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>CS180 Project 1</title>
+    <link rel="StyleSheet" href="./index_files/style.css" type="text/css" media="all">
+  </head>
+  <body>
+    <h1>
+      CS180 Project 2
+    </h1>
+    <h1>
+      Results
+    </h1>
+    <!--
+    <img src="./output/church.jpg" height="400" width="400">
+    <img src="./output/emir.jpg" height="400" width="400">
+    <img src="./output/harvesters.jpg" height="400" width="400">
+    <img src="./output/icon.jpg" height="400" width="400">
+    <img src="./output/lady.jpg" height="400" width="400">
+    <img src="./output/melons.jpg" height="400" width="400">
+    <img src="./output/monastery.jpg" height="400" width="400">
+    <img src="./output/onion_church.jpg" height="400" width="400">
+    <img src="./output/sculpture.jpg" height="400" width="400">
+    <img src="./output/self_portrait.jpg" height="400" width="400">
+    <img src="./output/three_generations.jpg" height="400" width="400">
+    <img src="./output/train.jpg" height="400" width="400">
+    -->
+      <h2>
+        <a>1.1: Finite Difference Operator</a>
+      </h2>
+      <h2>
+        <a>1.2: Derivative of Gaussian Filter</a>
+      </h2>
+      <h2>
+        <a>2.1: Image "Sharpening"</a>
+      </h2>
+      <h2>
+        <a>2.2: Hybrid Images</a>
+      </h2>
+      <h2>
+        <a>2.3: Gaussian and Laplacian Stacks</a>
+      </h2>
+      <h2>
+        <a>2.4: Multiresolution Blending</a>
+      </h2>
+    <h1>
+
+    <h1>
+      Reflections
+    </h1>
+    <p>
+    Discussion here.
+    </p>
+    <p>
+      In order to achieve this, I mostly followed the methods suggested in the project page, which worked mostly without complication.
+      Specifically, I implemented a search over all offsets to align the green and red images to the blue image.
+      8 percent of the borders of the images are removed to avoid the dark borders causing trouble with the alignment metric.
+      The quality of the offset is judged by the sum of squared differences in pixels, also as suggested.
+    </p>
+    <p>
+      Some problems I ran into in the course of developing these results include:
+      <ul>
+      <li>For a long time I thought I had a bug where the wrong image was being moved when just trying to align the green image to the blue, causing me to question my sanity.
+      This was actually because I was misinterpreting the image I was using for debugging: areas which are black on the green image would look blue, because of course the green-value was zero and the blue-value was nonzero.</li>
+      <li>The alignment, even for low-res images, will not work if the borders are not cropped.</li>
+      <li>For the emir picture in particular, the fact that his jacket is blue means that the l2 metric actually
+        isn't very good for aligning the red image to the blue image, since the blue values are high and the red values are low.
+        Originally, this resulted in complete failure when the image was cropped to the middle third in both dimensions.
+        This was resolved by reducing the extent of the cropping to just 8% of the image dimension per side, so that the L2 norm could be applied to other areas of the image.
+        Of course, this is not a fully general solution, and the emir photo still has clearly the worst alignment of the ones in this set.
+        In general it would probably be better to use an edge detector or a combination of metrics.
+      </li>
+      <li>Naturally, the initial for-loop implementation of the L2 difference is way too slow to be useful. Replacing it with a numpy call made things something like 50-200 times faster, which was good enough.</li>
+      <li>It's technically only necessary to search a 3 pixel range in the intermediate calls of the pyramid search to find the best alignment, assuming the "greedy" solution is best.
+        However, there was some concern that the greediness assumption wouldn't hold, so I increased the range to 7 pixels just in case.
+      </li>
+      </ul>
+    </p>
+    <p>As a subjective matter, I think (aside from removing the colored borders), the biggest problem with the colorized images is the color balance. Some of the images, particularly the ones with sky or water, look either kind of washed out or gray. As mentioned on the website, it might be good to try and decompose the current (R, G, B) as a combination of some other (R', G', and B'). But it's not clear how to do this without obsessively trying a bunch of combinations manually.</p>
+
+</body></html>
