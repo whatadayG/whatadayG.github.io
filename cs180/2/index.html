@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>CS180 Project 1</title>
-    <link rel="StyleSheet" href="./index_files/style.css" type="text/css" media="all">
+    <link rel="StyleSheet" href="./main.css" type="text/css" media="all">
   </head>
   <body>
     <h1>
@@ -28,15 +28,20 @@
         <a>1.1: Finite Difference Operator</a>
         <h3>
           <a>Convolution with Finite Difference in the x direction</a>
+
+          <img src="./images/1.1/partial_x.png" height="540" width="542">
         </h3>
         <h3>
           <a>Convolution with Finite Difference in the y direction</a>
+          <img src="./images/1.1/partial_y.png" height="540" width="542">
         </h3>
         <h3>
           <a>Gradient Magnitude Image</a>
+          <img src="./images/1.1/gradient.png" height="540" width="542">
         </h3>
         <h3>
           <a>Binarized (Edge Image)</a>
+          <img src="./images/1.1/edge.png" height="540" width="542">
         </h3>
       </h2>
 
@@ -44,28 +49,70 @@
         <a>1.2: Derivative of Gaussian Filter</a>
         <h3>
           <a>Convolution with Gaussian Kernel (Blurred Image)</a>
+          <img src="./images/1.2/cameraman.png" height="540" width="542">
         </h3>
         <h3>
-          <a>Convoution with DoG Filter</a>
+          <a>Convolution of Blurred Image with D_x</a>
         </h3>
         <h3>
-          <a>Image of Magnitudes of Filter</a>
+          <a>Convolution of Blurred Image with D_y</a>
         </h3>
         <h3>
-          <a>Binarized (Edge Image)</a>
+          <a>Blurred Gradient Magnitude</a>
         </h3>
+        <h3>
+          <a>Edge Image </a>
+        </h3>
+        Note above that the edge image on the blurred image is much less noisy than before.
+        Additionally, the edges are typically thicker and have fewer discontinuities than when using the difference filter on the original iamge.
+
+        <h3>
+          <a>Gaussian Convolved with D_x</a>
+          <img src="./images/1.2/DoG_x.png" height="480" width="640">
+        </h3>
+        <h3>
+          <a>Gaussian Convolved with D_y</a>
+          <img src="./images/1.2/DoG_y.png" height="480" width="640">
+        </h3>
+          <a>Original Gaussian Filter</a>
+          <img src="./images/1.2/2D Gaussian Filter.png" height="480" width="640">
+        </h3>
+        <!--
+        <h3>
+          <a>Convolution with Horizontal DoG Filter</a>
+        </h3>
+        <h3>
+          <a>Convolution with Vertical DoG Filter</a>
+        </h3>
+        <h3>
+          <a>Blurred Gradient Magnitude with DoG</a>
+        </h3>
+        <h3>
+          <a>Binarized (Threshold=)</a>
+        </h3>
+        -->
+        As expected, the results of convolving twice (first with the Gaussian and then the D_x/D_y) filters are the same as the results of convolving with the combined filter.
       </h2>
       <h2>
         <a>2.1: Image "Sharpening"</a>
       </h2>
         <h3>
-          <a>Church thingy</a>
+          <a>Taj Mahal</a>
+          <img src="./images/2.1/blurred_castle.png" height="853" width="853">
+          <img src="./images/2.1/sharpened_castle.png" height="853" width="853">
         </h3>
         <h3>
-          <a>My image</a>
+          <a>This bird</a>
+          <img src="./images/2.1/blurred_bird.png" height="850" width="1280">
+          <img src="./images/2.1/sharpened_bird.png" height="850" width="1280">
         </h3>
         <h3>
-          <a>Blurring and unblurring an sharp image</a>
+          <a>These boats</a>
+          <img src="./images/2.1/blurred_folkstone.png" height="850" width="1280">
+          <img src="./images/2.1/sharpened_folkstone.png" height="850" width="1280">
+        </h3>
+        <h3>
+          <a>Blurring and unblurring a sharp image</a>
         </h3>
         <h3>
           <a>Discussion</a>
@@ -73,7 +120,36 @@
       <h2>
         <a>2.2: Hybrid Images</a>
         <h3>
-          <a>Log magnitudes of FFTs</a>
+          <a>Log magnitudes of FFTs of an image of a boy</a>
+          <img src="./images/2.2/FFT of Image boy.png" height="480" width="640">
+        </h3>
+        <h3>
+          <a>Low pass filtered version</a>
+          <img src="./images/2.2/FFT of Image boy lowpass.png" height="480" width="640">
+        </h3>
+        <h3>
+          <a>Log magnitudes of FFTs of an image of an owl</a>
+          <img src="./images/2.2/FFT of Image owl.png" height="480" width="640">
+        </h3>
+        <h3>
+          <a>High pass filtered version</a>
+          <img src="./images/2.2/FFT of Image owl highpass.png" height="480" width="640">
+        </h3>
+        <h3>
+          <a>Sum of the above low pass filtered and high pass filtered version</a>
+          <img src="./images/2.2/FFT of Hybrid Image.png" height="480" width="640">
+        </h3>
+        <h3>
+          <a>Hybrid Image</a>
+          <img src="./images/2.2/Owl_Boy_bw.png" height="480" width="640">
+        </h3>
+        <h3>
+          <a>Tiger and a dog</a>
+          <img src="./images/2.2/Tiger_Dog_bw.png" height="480" width="640">
+        </h3>
+        <h3>
+          <a>Derek and Nutmeg</a>
+          <img src="./images/2.2/hybrid_bw.png" height="480" width="640">
         </h3>
         <h3>
           <a>Other examples</a>
