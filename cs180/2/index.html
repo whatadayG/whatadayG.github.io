@@ -264,55 +264,29 @@
           <img src="./images/all/2.4/bridge Level 2.png" height="640" width="480">
           <img src="./images/all/2.4/bridge Level 4.png" height="640" width="480">
 
-          <img src="./images/all/view.jpeg" height="420" width="720">
+          <img src="./images/all/2.4/view Level 0.png" height="420" width="720">
+          <img src="./images/all/2.4/view Level 1.png" height="420" width="720">
+          <img src="./images/all/2.4/view Level 2.png" height="420" width="720">
+          <img src="./images/all/2.4/view Level 4.png" height="420" width="720">
 
+          <img src="./images/all/2.4/birdge+view Level 0.png" height="480" width="640">
+          <img src="./images/all/2.4/birdge+view Level 1.png" height="480" width="640">
+          <img src="./images/all/2.4/birdge+view Level 2.png" height="480" width="640">
+          <img src="./images/all/2.4/birdge+view Level 3.png" height="480" width="640">
 
+          <a>Output Image</a>
+          <img src="./images/all/bridge_view.png" height="480" width="640">
 
-          
-          <img src="./images/all/bridge_view.png" height="480" width="640">
-          <img src="./images/all/bridge.jpeg" height="640" width="480">
-          <img src="./images/all/view.jpeg" height="420" width="720">
-          <img src="./images/all/bridge_view.png" height="480" width="640">
-          <img src="./images/all/bridge.jpeg" height="640" width="480">
-          <img src="./images/all/view.jpeg" height="420" width="720">
-          <img src="./images/all/bridge_view.png" height="480" width="640">
-          <img src="./images/all/bridge.jpeg" height="640" width="480">
-          <img src="./images/all/view.jpeg" height="420" width="720">
-          <img src="./images/all/bridge_view.png" height="480" width="640">
         </h3>
     </h1>
 
     <h1>
-      Reflections
+      Imortant things I learned
     </h1>
+ 
     <p>
-    Discussion here.
+      I really see the importance of understanding the internal working of different normalization methods. I saw drastic impact of what I previouslly thought as unimportant normalization differences.
+      In the process of generating the correct images, I generated a lot of "inccorect" but very artistically interesting images that deepened my curiosity in computer graphics.
     </p>
-    <p>
-      In order to achieve this, I mostly followed the methods suggested in the project page, which worked mostly without complication.
-      Specifically, I implemented a search over all offsets to align the green and red images to the blue image.
-      8 percent of the borders of the images are removed to avoid the dark borders causing trouble with the alignment metric.
-      The quality of the offset is judged by the sum of squared differences in pixels, also as suggested.
-    </p>
-    <p>
-      Some problems I ran into in the course of developing these results include:
-      <ul>
-      <li>For a long time I thought I had a bug where the wrong image was being moved when just trying to align the green image to the blue, causing me to question my sanity.
-      This was actually because I was misinterpreting the image I was using for debugging: areas which are black on the green image would look blue, because of course the green-value was zero and the blue-value was nonzero.</li>
-      <li>The alignment, even for low-res images, will not work if the borders are not cropped.</li>
-      <li>For the emir picture in particular, the fact that his jacket is blue means that the l2 metric actually
-        isn't very good for aligning the red image to the blue image, since the blue values are high and the red values are low.
-        Originally, this resulted in complete failure when the image was cropped to the middle third in both dimensions.
-        This was resolved by reducing the extent of the cropping to just 8% of the image dimension per side, so that the L2 norm could be applied to other areas of the image.
-        Of course, this is not a fully general solution, and the emir photo still has clearly the worst alignment of the ones in this set.
-        In general it would probably be better to use an edge detector or a combination of metrics.
-      </li>
-      <li>Naturally, the initial for-loop implementation of the L2 difference is way too slow to be useful. Replacing it with a numpy call made things something like 50-200 times faster, which was good enough.</li>
-      <li>It's technically only necessary to search a 3 pixel range in the intermediate calls of the pyramid search to find the best alignment, assuming the "greedy" solution is best.
-        However, there was some concern that the greediness assumption wouldn't hold, so I increased the range to 7 pixels just in case.
-      </li>
-      </ul>
-    </p>
-    <p>As a subjective matter, I think (aside from removing the colored borders), the biggest problem with the colorized images is the color balance. Some of the images, particularly the ones with sky or water, look either kind of washed out or gray. As mentioned on the website, it might be good to try and decompose the current (R, G, B) as a combination of some other (R', G', and B'). But it's not clear how to do this without obsessively trying a bunch of combinations manually.</p>
 
 </body></html>
