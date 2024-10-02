@@ -10,38 +10,30 @@
     </h1>
     <h1>
       Results
-    <!--
-    <img src="./output/church.jpg" height="400" width="400">
-    <img src="./output/emir.jpg" height="400" width="400">
-    <img src="./output/harvesters.jpg" height="400" width="400">
-    <img src="./output/icon.jpg" height="400" width="400">
-    <img src="./output/lady.jpg" height="400" width="400">
-    <img src="./output/melons.jpg" height="400" width="400">
-    <img src="./output/monastery.jpg" height="400" width="400">
-    <img src="./output/onion_church.jpg" height="400" width="400">
-    <img src="./output/sculpture.jpg" height="400" width="400">
-    <img src="./output/self_portrait.jpg" height="400" width="400">
-    <img src="./output/three_generations.jpg" height="400" width="400">
-    <img src="./output/train.jpg" height="400" width="400">
-    -->
+    
       <h2>
         <a>1.1: Finite Difference Operator</a>
         <h3>
+          <a>Original</a>
+
+          <img src="./images/all/cameraman.png" height="542" width="540">
+        </h3>
+        <h3>
           <a>Convolution with Finite Difference in the x direction</a>
 
-          <img src="./images/1.1/partial_x.png" height="540" width="542">
+          <img src="./images/1.1/partial_x.png" height="542" width="540">
         </h3>
         <h3>
           <a>Convolution with Finite Difference in the y direction</a>
-          <img src="./images/1.1/partial_y.png" height="540" width="542">
+          <img src="./images/1.1/partial_y.png" height="542" width="540">
         </h3>
         <h3>
-          <a>Gradient Magnitude Image</a>
-          <img src="./images/1.1/gradient.png" height="540" width="542">
+          <a>Gradient Magnitude Image </a>
+          <img src="./images/all/1.1/gradient.png" height="542" width="540">
         </h3>
         <h3>
-          <a>Binarized (Edge Image)</a>
-          <img src="./images/1.1/edge.png" height="540" width="542">
+          <a>Binarized Edge Image (treshold = 0.3)</a>
+          <img src="./images/all/1.1/edge_gradient.png" height="542" width="540">
         </h3>
       </h2>
 
@@ -49,76 +41,124 @@
         <a>1.2: Derivative of Gaussian Filter</a>
         <h3>
           <a>Convolution with Gaussian Kernel (Blurred Image)</a>
-          <img src="./images/1.2/cameraman.png" height="540" width="542">
+          <img src="./images/all/1.2/blurred_camera.png" height="542" width="650">
         </h3>
         <h3>
           <a>Convolution of Blurred Image with D_x</a>
+          <img src="./images/all/1.2/blurred_x_partial_camera.png" height="542" width="650">
         </h3>
         <h3>
           <a>Convolution of Blurred Image with D_y</a>
+          <img src="./images/all/1.2/blurred_y_partial_camera.png" height="542" width="650">
         </h3>
         <h3>
           <a>Blurred Gradient Magnitude</a>
+          <img src="./images/all/1.2/gradient_blurred_Gaussian.png" height="540" width="542">
         </h3>
         <h3>
-          <a>Edge Image </a>
+          <a>Binarized Edge Image (treshold = 0.07) </a>
+          <img src="./images/all/1.2/edge_gradient_blurred_Gaussian.png" height="540" width="542">
         </h3>
         Note above that the edge image on the blurred image is much less noisy than before.
         Additionally, the edges are typically thicker and have fewer discontinuities than when using the difference filter on the original iamge.
 
+        
+        <h3>
+          <a>Original Gaussian Filter</a>
+          <img src="./images/all/1.2/2D Gaussian Filter.png" height="480" width="640">
+        </h3>
+        
         <h3>
           <a>Gaussian Convolved with D_x</a>
-          <img src="./images/1.2/DoG_x.png" height="480" width="640">
+          <img src="./images/all/1.2/DoG_x.png" height="480" width="640">
         </h3>
         <h3>
           <a>Gaussian Convolved with D_y</a>
-          <img src="./images/1.2/DoG_y.png" height="480" width="640">
-        </h3>
-          <a>Original Gaussian Filter</a>
-          <img src="./images/1.2/2D Gaussian Filter.png" height="480" width="640">
-        </h3>
-        <!--
-        <h3>
-          <a>Convolution with Horizontal DoG Filter</a>
+          <img src="./images/all/1.2/DoG_y.png" height="480" width="640">
         </h3>
         <h3>
-          <a>Convolution with Vertical DoG Filter</a>
+          <a>Blurred Gradient Magnitute from DoG</a>
+          <img src="./images/all/1.2/gradient_blurred_DoG.png" height="540" width="542">
         </h3>
         <h3>
-          <a>Blurred Gradient Magnitude with DoG</a>
+          <a>Binarized Edge Image (treshold = 0.07)</a>
+          <img src="./images/all/1.2/edge_gradient_blurred_DoG.png" height="540" width="542">
         </h3>
-        <h3>
-          <a>Binarized (Threshold=)</a>
-        </h3>
-        -->
-        As expected, the results of convolving twice (first with the Gaussian and then the D_x/D_y) filters are the same as the results of convolving with the combined filter.
+        Here the results of convolving twice (first with the Gaussian and then the D_x/D_y) filters are the same as the results of convolving with the combined filter.
       </h2>
       <h2>
         <a>2.1: Image "Sharpening"</a>
       </h2>
         <h3>
           <a>Taj Mahal</a>
+          <h4> 
+          Original
+          <img src="./images/all/2.1/castle.jpeg" height="853" width="853">
+          Blurred
           <img src="./images/2.1/blurred_castle.png" height="853" width="853">
+          Sharpened
           <img src="./images/2.1/sharpened_castle.png" height="853" width="853">
+          </h4>
         </h3>
         <h3>
-          <a>This bird</a>
+          <a>Bird</a>
+          <h4> 
+          Original
+          <img src="./images/all/2.1/bird.jpg" height="850" width="1280">
+          Blurred
           <img src="./images/2.1/blurred_bird.png" height="850" width="1280">
+          Sharpened
           <img src="./images/2.1/sharpened_bird.png" height="850" width="1280">
+          </h4> 
         </h3>
         <h3>
-          <a>These boats</a>
+          <h4> 
+          <a>Boats</a>
+          Original
+          <img src="./images/all/2.1/folkstone.jpg" height="853" width="1280">
+          Blurred
           <img src="./images/2.1/blurred_folkstone.png" height="850" width="1280">
+          Sharpened
           <img src="./images/2.1/sharpened_folkstone.png" height="850" width="1280">
+          </h4> 
         </h3>
         <h3>
           <a>Blurring and unblurring a sharp image</a>
         </h3>
+    
         <h3>
-          <a>Discussion</a>
+          
+          <a>Discussion: </a>
+          The unsharp mask filter made the image appear sharper overall. The dark lines on the orginal images were emphasized, which makes the image
+          more visually striking.
+          But sharpening the blurred image does not recover the original image perfectly, possibly due to the loss of high 
+          frequencies during the blurring process. 
         </h3>
       <h2>
         <a>2.2: Hybrid Images</a>
+        <h3>
+          <a>Derek/Nutmeg</a>
+          <img src="./images/all/DerekPicture.jpg" height="700" width="500">
+          <img src="./images/all/nutmeg.jpg" height="550" width="733">
+          <img src="./images/all/2.2/hybrid_bw.png" height="600" width="800">
+        </h3>
+
+
+        <h3>
+          <a>Tiger/Dog</a>
+          <img src="./images/all/tiger.jpg" height="750" width="500">
+          <img src="./images/all/dog.jpg" height="400" width="615">
+          <img src="./images/all/2.2/Tiger_Dog_bw.png" height="600" width="760">
+        </h3>
+
+
+28      <a>Boy/Owl</a>
+          <img src="./images/all/boy.jpg" height="500" width="690">
+          <img src="./images/all/owl.jpg" height="400" width="715">
+          <img src="./images/all/2.2/Owl_Boy_bw.png" height="600" width="760">
+        </h3>
+
+    
         <h3>
           <a>Log magnitudes of FFTs of an image of a boy</a>
           <img src="./images/2.2/FFT of Image boy.png" height="480" width="640">
@@ -142,11 +182,27 @@
         <h3>
           <a>Hybrid Image</a>
           <img src="./images/2.2/Owl_Boy_bw.png" height="480" width="640">
+
+          <h3>
+          
+            <a>Discussion: </a>
+            The boy and Owl image is my favorite. The two subjects here share similar facial structures, which makes
+            alignment easy. Also, the owl has  complex feather structures, which is well perserved in 
+            high frequency.
+          </h3>
+
+
         </h3>
         <h3>
-          <a>Tiger and a dog</a>
-          <img src="./images/2.2/Tiger_Dog_bw.png" height="480" width="640">
+          <a>Failure</a>
+          <img src="./images/all/small.jpg" height="750" width="500">
+          <img src="./images/all/road.png" height="400" width="615">
+          <img src="./images/all/2.2/mistake_bw.png" height="480" width="640">
         </h3>
+        <a>Discussion: </a>
+            The boy and Owl image is my favorite. The two subjects here share similar facial structures, which makes
+            alignment easy. Also, the owl has  complex feather structures, which is well perserved in 
+            high frequency.
         <h3>
           <a>Derek and Nutmeg</a>
           <img src="./images/2.2/hybrid_bw.png" height="480" width="640">
