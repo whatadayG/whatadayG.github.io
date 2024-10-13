@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>CS180 Project 1</title>
+    <link rel="StyleSheet" href="./main.css" type="text/css" media="all">
+  </head>
+  <body>
+    <h1>
+      CS180 Project 2
+    </h1>
+    <h1>
+      Results
+    
+      <h2>
+        <a>1. Defining Correspondences</a>
+        Here's an example of some manually labeled keypoints and the corresponding triangulation.
+        For this project, throughout, we used the Delaunay triangulation.
+        Note of course that the keypoints need to be labeled in a specific order in order to draw correspondences in later sections.
+        <img src="./images/oldman1_keypoints.png" height="600" width="800">
+        <img src="./images/oldman-triangulation1.png" height="600" width="800">
+
+      </h2>
+
+      <h2>
+        <a>2. Computing the Mid-way Face</a>
+
+          <a>Two preexisting photos of people</a>
+          <img src="./images/oldman1_small.png" height="600" width="500">
+          <img src="./images/oldman2_small.png" height="600" width="500">
+
+          <a>The mid-way face </a>
+          <img src="./images/mid_face.png" height="600" width="800">
+
+      </h2>
+      <h2>
+        <a>3. The Morph Sequence</a>
+        This is the result of basically doing the same operation as above, but weighting the two images differently and varying the weight over time.
+        <img src="./images/morph_sequence.gif" height="600" width="500">
+      </h2>
+        
+      <h2>
+        <a>4. The Mean Face of a Population</a>
+        
+          This is the mean face of a a dataset of 100 faces from the FEI face database.
+          Faces in this dataset were cropped and normalized in various ways so that corresponding features are in approximately the same locations in each image. (The dataset came with keypoints, so we didn't need to manually label our own.)
+          <img src="./images/mean_face.png" height="600" width="500"> 
+          Here are several examples from the dataset, followed by the result of warping their features to match the mean face.
+          <img src="./images/examples/original_10.jpg" height="600" width="500">
+          <img src="./images/examples/warp_image_10.png" height="600" width="500">
+          <img src="./images/examples/original_20.jpg" height="600" width="500">
+          <img src="./images/examples/warp_image_20.png" height="600" width="500">
+          <img src="./images/examples/original_30.jpg" height="600" width="500">
+          <img src="./images/examples/warp_image_30.png" height="600" width="500">
+          <img src="./images/examples/original_40.jpg" height="600" width="500">
+          <img src="./images/examples/warp_image_40.png" height="600" width="500">
+          <img src="./images/examples/original_50.jpg" height="600" width="500">
+          <img src="./images/examples/warp_image_50.png" height="600" width="500">
+
+          Furthermore, here is my own face warped to match the mean face:
+          <img src="./images/me_small.png" height="600" width="500">
+          <img src="./images/me_into_mean.png" height="600" width="500">
+          and the mean face warped to match my own:
+          <img src="./images/mean_into_me.png" height="600" width="500">
+
+
+      </h2>
+      <h2>
+        <a>5. Caricature</a>
+        This is the result of simply allowing the weights applied in the morph to obtain values outside of (0, 1):
+        This is an extreme version of my face:
+        <img src="./images/caricature.png" height="600" width="500">
+        And an even more extreme version:
+        <img src="./images/severe_caricature.png" height="600" width="500">
+
+         <!-- And for fun, the "opposite" of my face, overweighting the normal face: -->
+        Note that the results with respect to skin tone aren't very profound; the dataset as given was in grayscale.
+      </h2>
+      <h2>
+        <a>6. PCA Caricature</a>
+        I applied PCA to the same dataset, using the simple pixel values as features (i.e, thinking of the flattened image as a vector and performing PCA across a list of such vectors).
+
+        Here are some of the "eigenfaces":
+        <img src="./images/examples/pca_component_0.png" height="600" width="500">
+        <img src="./images/examples/pca_component_1.png" height="600" width="500">
+        <img src="./images/examples/pca_component_2.png" height="600" width="500">
+
+        Here is an example datapoint from the dataset reconstructed using the PCA basis:
+        <img src="./images/image_reconstruction.png" height="600" width="500">
+
+        Unsurprisingly, it exactly matches the original image, because I used the entire basis for the reconstruction.
+        The reconstruction with only the first 10 eigenvectors is substantially murkier, but clearly contains features of the original image:
+        <img src="./images/image_reconstruction_10.png" height="600" width="500">
+
+        Here's a caricature of this guy using the PCA basis (scaling factor 1.5):
+        <img src="./images/image_reconstruction_10_scaled.png" height="600" width="500">
+
+        And one with a scaling factor of 3:
+        <img src="./images/image_reconstruction_10_scaled_severe.png" height="600" width="500">
+        These aren't really caricatures in the traditional sense, but they do seem to emphasize some features of the original image.
+        This is of course what you'd expect. The previous method's caricatures explicitly modify the shapes of faces, whereas the notion of features on this one is a lot less directly shape-related.
+
+
+        However, here's the reconstruction of my own face on the first 10 eigenvectors:
+        <img src="./images/me_reconstruction.png" height="600" width="500">
+
+        It's substantially worse, which surprised me. I think one of the potential reasons is that the dataset isn't that large, so perhaps  my face may exhibit features substantially different from those in the dataset, and some of the important ones get destroyed by the projection into the PCA basis. (At least the hair seems to be preserved, and the general face shape is there.)
+        I have seen better looking PCA caricatures, so I wonder if this is partly because this dataset was in grayscale, so there aren't color related features for PCA to extract, and this somehow affects the typical features here.
+
+        For completeness, here's a caricature of me using the PCA basis anyway:
+        <img src="./images/me_reconstruction_scaled.png" height="600" width="500">
+
+        It's not very good; it looks fairly similar to the original image. Increasing the scaling factor doesn't make a qualitative difference.
+
+      </h2>
+        
+    </h1>
+
+</body></html>
