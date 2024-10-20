@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>CS180 Project 4</title>
+    <link rel="StyleSheet" href="./main.css" type="text/css" media="all">
+  </head>
+  <body>
+    <h1>
+      CS180 Project 4
+    </h1>
+    <h1>
+      <h2>
+        <a>Rectifications</a>
+      </h2>
+
+        The basic idea here is that we know that some objects are rectangular in real life, so once we label the corners of the rectangle in the image, we can find a homography from them to a hard-coded rectangle and use this to make that particular rectangle appear to be a rectangle in the image. 
+
+        To deal with problems associated with the homography being unstable, we actually labeled 9 equally spaced points in a rectangular grid and used these to constrain the computation of the homography.
+        Here's a photo of a multi-monitor setup, and the result of rectifying it to each monitor:
+        <img src="./images/monitors.png" height="307" width="408">
+        <img src="./images/monitors_rectified_topleft.png" height="470" width="447">
+        <img src="./images/monitors_rectified_topright.png" height="403" width="395">
+        <img src="./images/monitors_rectified_bottom.png" height="371" width="462">
+        
+        For completeness, here's also a photo of part of an office, and the result of rectifying it to the dresser (the dresser is parallel to the whiteboard, so it looks as if we rectified the whiteboard as well; I originally tried to rectify to the points on the shelf and we'll discuss why this was a bad idea later):
+        <img src="./images/office1.png" height="1428" width="1071">
+
+        <img src="./images/office1_rectified.png" height="1840" width="1297">
+
+
+      
+        <h2><a>Mosaics</a></h2>
+        Using the homography, we can also overlay corresponding points in two images to make a mosaic. There are some subtleties about how to handle the boundaries of the images, but the basic summary is that we can use a Gaussian filter to weight the contributions of the two images on their overlap. This still causes trouble in the corners of the overlap, since they are close to both of the original images, which is fundamentally unsolvable if the original images are sufficiently different in lighting conditions or perspective.
+
+        Here's a mosaic of two photos of a bench:
+        <img src="./images/bench1.png" height="768" width="1020">
+        <img src="./images/bench2.png" height="768" width="1020">
+        <img src="./images/mosaic_bench.png" height="1324" width="1075">
+
+        Here's a mosaic of two photos of a laundry room:
+        <img src="./images/laundry1.png" height="1020" width="768">
+        <img src="./images/laundry2.png" height="1020" width="768">
+        <img src="./images/mosaic_laundry.png" height="1583" width="1436">
+
+        Here's a mosaic of two new photos in the same office as before:
+        <img src="./images/office3.png" height="768" width="1020">
+        <img src="./images/office4.png" height="768" width="1020">
+        <img src="./images/mosaic_office_34.png" height="1324" width="1075">
+
+        For reference, two photos originally taken in the same office were labeled a bit poorly, plus the constraining points were nowhere near the boundary image, so the homography didn't align many of the edges. However, the Gaussian blur still convincingly blends them if you don't look at the corners of the overlap:
+        <img src="./images/office1.png" height="1428" width="1071">
+        <img src="./images/office2.png" height="1428" width="1071">
+        <img src="./images/mosaic_office_12.png" height="2313" width="1460">
+        
+        <h2><a>Other lessons and subtleties about homographies</a></h2>
+
+        I originally tried to rectify to the points on the shelf in the office, thinking it would be great because the photo would be extremely distorted, which would produce a cool visual effect.
+        Unfortunately, the shelf is actually angled far enough from the plane of the original image that the naive homography puts other points in the image behind the "camera", and other points to the side of the "camera", so projecting them back to the image results in the points basically being unbounded, causing the naive code to hang and making me think I had a bug.
+        
+        Also, I tried for a long time to figure out how to join corresponding points in the images to make a mosaic. My initial approach was to write a bunch of functions to register the two images against each other using their features, similar to in Assignment 1. I originally thought that naive L2 difference would be sufficient, and I spent a long time trying out different feature choices because most of them worked surprisingly badly, and eventually I realized that the homography tells us exactly where the boundaries of one image end up in the other image, so we can figure out exactly how they lie on top of each other.
+
+        These are both great examples of why it's important to thoroughly understand what the homography you're computing actually does.
+      
+        
+    </h1>
+
+</body></html>
