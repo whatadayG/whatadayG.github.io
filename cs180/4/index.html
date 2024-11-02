@@ -64,4 +64,50 @@
         
     </h1>
 
+    <h1></h1>
+      Part B: Automatic feature correspondences
+      As expressed in the spec, this part follows the logic of the paper  “Multi-Image Matching using Multi-Scale Oriented Patches” by Brown et al, but with several simplifications. The main simplification is that our feature extractor doesn't involve any orientation; we just use axis-aligned patches at one scale.
+
+      First we start with a simple Harris corner detector. Here are the top 200 Harris corners for the laundry room image:
+      <img src="./images/harris_pointsA.png" height="700" width="1020">
+
+      The biggest problem with this is that too many of the strongest corner candidates are clustered together, which makes for bad feature correspondences.
+      So we apply a non-maximum suppression to filter out corners that are too close to each other. Here are the top 200 corners after non-maximum suppression:
+      <img src="./images/nms_harris_pointsA.png" height="700" width="1020">
+
+      We undergo this process for the two images we want to mosaic, and then in each image, we extract a feature descriptor at each corner. It's hard to helpfully visualize the feature descriptor, but we take a 40x40 grid of pixels centered at the corner, downsample it to 8x8, and normalize it to have zero mean and unit variance.
+      As referenced above, obviously this isn't invariant to rotation or to scale, so this method won't robustly find correspondences for other images, but even this simple feature descriptor is strong enough for these.
+      We use these features to find correspondences between the two images. A feature in one image is better match for a feature in the other image if the L2 distance between their feature descriptors is small.
+      
+      Now to be clear, for each feature in one image we calculate its matching score with every feature in the other image. We use Lowe's method here to determine the quality of the correspondence: A correspondence is better if the difference in quality of match between the best candidate and the second best candidate is large.
+      We sort the correspondences in order of (highest matching score / second best matching score), with a lower ratio being better.
+      Here are the top 16 correspondences found by this process:
+      <img src="./images/matches.png" height="700" width="1020">
+
+      As you can see, not all of the correspondences are correct, but 14 out of 16 of them are about as good as our manually labeled correspondences.
+      It follows that we can use this method to mosaic the two images, the same way we did in part A. However, we can't simply minimize the least-squares solution to the homography, because the correspondences are noisy.
+      So we use RANSAC to repeatedly fit homographies to four points, and find a homography that maximizes the number of inliers. Here inliers are points that, when transformed by the homography, are within some tolerance of their corresponding point.
+      We set the tolerance really high, to 50 pixels, which doesn't really matter because if a correspondence is bad, it's unlikely to be within 50 pixels of the correct one.
+      
+      Here is the mosaic we generated with manual correspondences (i.e, the same mosaic as above in part A), followed by the one we generated with automatic correspondences:
+      <img src="./images/mosaic_laundry.png" height="1583" width="1436">
+      <img src="./images/auto_mosaic_laundry.png" height="1583" width="1436">
+
+      They are practically indistinguishable, as expected.
+
+      Now here is the same thing again with the other above mosaics, with the manual correspondences first in each case:
+
+      <img src="./images/mosaic_office_34.png" height="1324" width="1075">
+      <img src="./images/auto_mosaic_office_better.png" height="1324" width="1075">
+
+      <img src="./images/mosaic_bench.png" height="1583" width="1436">
+      <img src="./images/auto_mosaic_bench.png" height="1583" width="1436">
+
+      Again, they are practically indistinguishable.
+
+      I noticed that the office mosaics are a little bit blurry in the middle, but the border between the wall and ceiling is very clean and so are the lines on the square shelf.
+      Even checking the correspondences manually, the correspondences are extremely good and they fit a RANSAC with quite few outliers even with 8 pixel tolerance.
+      I think this is because the photos actually were taken with a slight translation, so that no homography can perfectly align them.
+    </h1>
+
 </body></html>
